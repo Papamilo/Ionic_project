@@ -9,6 +9,11 @@ import { NewPlacePage } from '../pages/new-place/new-place';
 import { HomePage } from '../pages/home/home';
 import { PlacesService } from '../services/places.service';
 import { IonicStorageModule } from '@ionic/storage';
+import { PlacePage } from '../pages/place/place';
+
+import { Geolocation } from '@ionic-native/geolocation';
+import { AgmCoreModule } from 'angular2-google-maps/core'
+
 
 declare var window;
 
@@ -22,24 +27,30 @@ export class MyErrorHandler implements ErrorHandler {
   declarations: [
     MyApp,
     HomePage,
-    NewPlacePage
+    NewPlacePage,
+    PlacePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAYbPuH6EX_o1GG6BcMrkBq_cUC5SpcFV0'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    NewPlacePage
+    NewPlacePage,
+    PlacePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-     PlacesService,
+    PlacesService,
+    Geolocation,
+
      [{ provide: ErrorHandler, useClass: MyErrorHandler }] // Error Monitoring
     ]
 })
