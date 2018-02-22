@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from "ionic-angular";
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from 'ionic-native';
 
 import { PlacesService } from '../../services/places.service';
 
@@ -14,7 +14,7 @@ export class NewPlacePage {
   location: {lat: number, lng: number} = {lat: 0, lng: 0};
 
   // En attente au cas ou: public navCtrl: NavController, public navParams: NavParams
-  constructor(private geolocation: Geolocation, private placesService: PlacesService, private navCtrl: NavController) {  }
+  constructor(private placesService: PlacesService, private navCtrl: NavController) {  }
 
   onAddPlace(value: {title: string}) {
       this.placesService.addPlace({title: value.title, location: this.location});
@@ -22,10 +22,10 @@ export class NewPlacePage {
   }
 
   onLocateUser() {
-      this.geolocation.getCurrentPosition()
+      Geolocation.getCurrentPosition()
       .then(
         (location) => {
-          console.log(this.location)
+          console.log(this.location, 'Location fetched successfuly')
           this.location.lat = location.coords.latitude;
           this.location.lat = location.coords.longitude;
         }

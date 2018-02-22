@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {ModalController, NavController } from 'ionic-angular';
 
+import { ModalController, NavController } from 'ionic-angular';
 import { NewPlacePage } from '../new-place/new-place';
 import { PlacesService } from '../../services/places.service';
 import { PlacePage } from '../place/place';
